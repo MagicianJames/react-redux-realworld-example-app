@@ -8,9 +8,10 @@ const Banner = ({ appName, token }) => {
     <div className="banner">
       <div className="container">
         <h1 className="logo-font">
-          {appName.toLowerCase()}
+          {/*{appName.toLowerCase()}*/}
+          Phanuwat Sikharestrakul
         </h1>
-        <p>A place to share your knowledge.</p>
+        <p>6115218</p>
       </div>
     </div>
   );
