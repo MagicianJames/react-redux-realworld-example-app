@@ -12,7 +12,6 @@ pipeline {
         stage("BUILD") {
             steps {
                 sh 'npm install'
-                sh 'npm rebuild'
             }
         }
         stage("DEPLOY") {
