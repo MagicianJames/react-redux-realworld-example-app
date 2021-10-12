@@ -1,25 +1,23 @@
 pipeline {
     agent {
         docker {
-            image 'node:lts-buster-slim'
+            image 'mrts/docker-python-nodejs-google-chrome'
             args '-p 3000:3000'
         }
     }
     environment {
-        CI = 'true'
+        HOME="."
     }
     stages {
-        stage('BUILD') {
+        stage("BUILD") {
             steps {
                 sh 'npm install'
+                sh 'npm rebuild'
             }
         }
-        stage('DEPLOY') {
+        stage("DEPLOY") {
             steps {
-                sh './jenkins/scripts/deliver.sh'
-                input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                sh './jenkins/scripts/kill.sh'
-		sh 'npm start'
+                sh 'npm start &'
             }
         }
     }
