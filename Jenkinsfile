@@ -16,11 +16,11 @@ pipeline {
         }
         stage("DEPLOY") {
             steps {
-                sh 'npm start &'
+                sh "chmod +x -R ${env.WORKSPACE}"
+		        sh './deliver.sh'
+		        input message: 'Finished using the web site? (Click "Proceed" to continue)'
+		        sh './kill.sh'
             }
-        stage("EXIT") {
-            input message: 'Finished using the web app? (Click "Proceed" to continue)'
-            sh 'fuser -k 4100/tcp || true'
         }
     }
 }
