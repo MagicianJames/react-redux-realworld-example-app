@@ -16,10 +16,11 @@ pipeline {
         }
         stage("DEPLOY") {
             steps {
-		sh './deliver.sh'
-		input message: 'Finished using the web site? (Click "Proceed" to continue)'
-		sh './kill.sh'
+                sh 'npm start &'
             }
+        stage("EXIT") {
+            input message: 'Finished using the web app? (Click "Proceed" to continue)'
+            sh 'fuser -k 4100/tcp || true'
         }
     }
 }
