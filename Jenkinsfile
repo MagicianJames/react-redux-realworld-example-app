@@ -16,7 +16,7 @@ pipeline {
         }
         stage("DEPLOY") {
             steps {
-                sh 'npm start &'
+                sh 'npm start'
             }
         }
     }
